@@ -1,0 +1,6 @@
+---
+
+- name: Install EPEL Package
+  package:
+    name: "{{ epel_package }}"
+    state: installed

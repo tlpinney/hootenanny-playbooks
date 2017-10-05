@@ -1,0 +1,8 @@
+---
+
+- name: configure package repositories
+  hosts: all
+  become: true
+  roles:
+    - epel
+    - pgdg
