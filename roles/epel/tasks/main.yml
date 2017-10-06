@@ -1,5 +1,4 @@
 ---
-
 - name: install epel package
   package:
     name: "{{ epel_package }}"
