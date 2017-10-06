@@ -6,33 +6,32 @@
     owner: root
     group: root
     mode: '0644'
-  notify: import nodesource rpm key
   when: ansible_distribution == 'CentOS'
 
 - name: nodesource yum repo
   yum_repository:
     state: present
     name: nodesource
-    baseurl: "{{ nodesource_yum_base_url }}/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}"
-    description: "Node.js Packages for Enterprise Linux {{ ansible_distribution_major_version }} - {{ ansible_architecture }}"
+    baseurl: "{{ nodesource_yum_base_url }}/$releasever/$basearch"
+    description: "Node.js Packages for Enterprise Linux $releasever - $basearch"
     enabled: yes
     failovermethod: priority
     file: "{{ nodesource_yum_repo_path }}"
     gpgcheck: yes
-    gpgkey: "{{ nodesource_yum_key_path }}"
+    gpgkey: "file://{{ nodesource_yum_key_path }}"
   when: ansible_distribution == 'CentOS'
 
 - name: nodesource yum source repo
   yum_repository:
     state: present
     name: nodesource-source
-    baseurl: "{{ nodesource_yum_base_url }}/{{ ansible_distribution_major_version }}/SRPMS"
-    description: "Node.js Packages for Enterprise Linux {{ ansible_distribution_major_version }} - {{ ansible_architecture }}"
+    baseurl: "{{ nodesource_yum_base_url }}/$releasever/SRPMS"
+    description: "Node.js Packages for Enterprise Linux $releasever - $basearch"
     enabled: no
     failovermethod: priority
     file: "{{ nodesource_yum_repo_path }}"
     gpgcheck: yes
-    gpgkey: "{{ nodesource_yum_key_path }}"
+    gpgkey: "file://{{ nodesource_yum_key_path }}"
   when: ansible_distribution == 'CentOS'
 
 - name: nodesource apt key

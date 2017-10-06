@@ -1,3 +1,0 @@
----
-- name: import nodesource rpm key
-  command: "rpm --quiet --import /etc/pki/rpm-gpg/{{ nodesource_yum_key }}"

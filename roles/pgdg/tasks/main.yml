@@ -6,8 +6,6 @@
     owner: root
     group: root
     mode: '0644'
-  notify:
-    - import pgdg rpm key
   when: ansible_distribution == 'CentOS'
 
 - name: pgdg yum repo
@@ -19,7 +17,7 @@
     enabled: yes
     file: "{{ pgdg_yum_repo_path }}"
     gpgcheck: yes
-    gpgkey: "{{ pgdg_yum_key_path }}"
+    gpgkey: "file://{{ pgdg_yum_key_path }}"
   when: ansible_distribution == 'CentOS'
 
 - name: pgdg yum source repo
@@ -31,7 +29,7 @@
     enabled: no
     file: "{{ pgdg_yum_repo_path }}"
     gpgcheck: yes
-    gpgkey: "{{ pgdg_yum_key_path }}"
+    gpgkey: "file://{{ pgdg_yum_key_path }}"
   when: ansible_distribution == 'CentOS'
 
 - name: pgdg apt key

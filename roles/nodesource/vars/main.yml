@@ -6,7 +6,7 @@ nodesource_apt_key: nodesource.gpg
 nodesource_apt_key_path: "/etc/apt/trusted.gpg.d/{{ nodesource_apt_key }}"
 nodesource_apt_repo_path: '/etc/trusted.gpg.d/nodesource.gpg'
 
-nodesource_yum_base_url: "https://rpm.nodesource.com/pub/el/{{ nodejs_version | nodesource_yum_repo }}"
+nodesource_yum_base_url: "https://rpm.nodesource.com/{{ nodejs_version | nodesource_yum_repo }}/el"
 nodesource_yum_key: NODESOURCE-GPG-SIGNING-KEY-EL
 nodesource_yum_key_path: "/etc/pki/rpm-gpg/{{ nodesource_yum_key }}"
 nodesource_yum_repo_path: "/etc/yum.repos.d/nodesource-el.repo"
