@@ -30,10 +30,10 @@
   when: ansible_distribution == 'Ubuntu'
 
 - name: pgdg apt source list
-  template:
-    src: pgdg.list.j2
-    dest: "/etc/apt/sources.list.d/pgdg.list"
-    owner: root
-    group: root
+  apt_repository:
+    state: present
+    repo: "deb {{ pgdg_base_url }}/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
+    filename: pgdg
     mode: '0644'
+    update_cache: yes
   when: ansible_distribution == 'Ubuntu'

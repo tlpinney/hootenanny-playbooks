@@ -1,4 +1,4 @@
 ---
 
 - name: import pgdg key
-  command: "rpm --quiet --import {{ pgdg_key_path }}"
+  command: "rpm --quiet --import {{ pgdg_yum_key_path }}"
