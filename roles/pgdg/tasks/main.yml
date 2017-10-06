@@ -1,8 +1,7 @@
 ---
-
 - name: pgdg yum key
   copy:
-    src: "{{ pgdg_yum_key }}"
+    src: RPM-GPG-KEY-PGDG
     dest: "{{ pgdg_yum_key_path }}"
     owner: root
     group: root
@@ -15,9 +14,10 @@
   yum_repository:
     state: present
     name: "pgdg{{ postgres_short_version }}"
-    baseurl: "{{ pgdg_base_url }}/{{ postgres_version }}/redhat/rhel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
+    baseurl: "{{ pgdg_yum_base_url }}/{{ postgres_version }}/redhat/rhel-$releasever-$basearch"
+    description: "PostgreSQL {{ postgres_version }} $release - $basearch"
     enabled: yes
-    file: "/etc/yum.repos.d/pgdg-{{ postgres_short_version }}-centos.repo"
+    file: "{{ pgdg_yum_repo_path }}"
     gpgcheck: yes
     gpgkey: "{{ pgdg_yum_key_path }}"
   when: ansible_distribution == 'CentOS'
@@ -26,9 +26,10 @@
   yum_repository:
     state: present
     name: "pgdg{{ postgres_short_version }}-source"
-    baseurl: "{{ pgdg_base_url }}/srpms/{{ postgres_version }}/redhat/rhel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
+    baseurl: "{{ pgdg_yum_base_url }}/srpms/{{ postgres_version }}/redhat/rhel-$releasever-$basearch"
+    description: "PostgreSQL {{ postgres_version }} $release - $basearch - Source"
     enabled: no
-    file: "/etc/yum.repos.d/pgdg-{{ postgres_short_version }}-centos.repo"
+    file: "{{ pgdg_yum_repo_path }}"
     gpgcheck: yes
     gpgkey: "{{ pgdg_yum_key_path }}"
   when: ansible_distribution == 'CentOS'
@@ -45,7 +46,7 @@
 - name: pgdg apt source list
   apt_repository:
     state: present
-    repo: "deb {{ pgdg_apt_base_url }}/{{ ansible_distribution_release }}-pgdg main"
+    repo: "deb {{ pgdg_apt_base_url }} {{ ansible_distribution_release }}-pgdg main"
     filename: pgdg
     mode: '0644'
     update_cache: yes

@@ -5,5 +5,5 @@
   become: true
   roles:
     - epel
+    - nodesource
     - pgdg
-    - git
