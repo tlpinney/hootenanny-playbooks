@@ -4,3 +4,4 @@
   package:
     name: "{{ epel_package }}"
     state: installed
+  when: ansible_distribution == 'CentOS'
