@@ -2,27 +2,40 @@
 
 - name: pgdg yum key
   copy:
-    src: RPM-GPG-KEY-PGDG
+    src: "{{ pgdg_yum_key }}"
     dest: "{{ pgdg_yum_key_path }}"
     owner: root
     group: root
     mode: '0644'
   notify:
-    - import pgdg key
+    - import pgdg rpm key
   when: ansible_distribution == 'CentOS'
 
 - name: pgdg yum repo
-  template:
-    src: pgdg-centos.repo.j2
-    dest: "/etc/yum.repos.d/pgdg-{{ postgres_short_version }}-centos.repo"
-    owner: root
-    group: root
-    mode: '0644'
+  yum_repository:
+    state: present
+    name: "pgdg{{ postgres_short_version }}"
+    baseurl: "{{ pgdg_base_url }}/{{ postgres_version }}/redhat/rhel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
+    enabled: yes
+    file: "/etc/yum.repos.d/pgdg-{{ postgres_short_version }}-centos.repo"
+    gpgcheck: yes
+    gpgkey: "{{ pgdg_yum_key_path }}"
+  when: ansible_distribution == 'CentOS'
+
+- name: pgdg yum source repo
+  yum_repository:
+    state: present
+    name: "pgdg{{ postgres_short_version }}-source"
+    baseurl: "{{ pgdg_base_url }}/srpms/{{ postgres_version }}/redhat/rhel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}"
+    enabled: no
+    file: "/etc/yum.repos.d/pgdg-{{ postgres_short_version }}-centos.repo"
+    gpgcheck: yes
+    gpgkey: "{{ pgdg_yum_key_path }}"
   when: ansible_distribution == 'CentOS'
 
 - name: pgdg apt key
   copy:
-    src: pgdg.gpg
+    src: "{{ pgdg_apt_key }}"
     dest: "{{ pgdg_apt_key_path }}"
     owner: root
     group: root
@@ -32,7 +45,7 @@
 - name: pgdg apt source list
   apt_repository:
     state: present
-    repo: "deb {{ pgdg_base_url }}/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
+    repo: "deb {{ pgdg_apt_base_url }}/{{ ansible_distribution_release }}-pgdg main"
     filename: pgdg
     mode: '0644'
     update_cache: yes
