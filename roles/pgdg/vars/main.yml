@@ -3,4 +3,5 @@ postgres_version: '9.5'
 postgres_short_version: "{{ postgres_version | regex_replace('\\.') }}"
 
 pgdg_base_url: 'https://download.postgresql.org'
-pgdg_key_path: "/etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-{{ postgres_short_version }}"
+pgdg_apt_key_path: "/etc/apt/trusted.gpg.d/pgdg.gpg"
+pgdg_yum_key_path: "/etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-{{ postgres_short_version }}"

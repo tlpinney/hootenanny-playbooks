@@ -1,9 +1,9 @@
 ---
 
-- name: Install PGDG GPG Key on CentOS
+- name: pgdg yum key
   copy:
     src: RPM-GPG-KEY-PGDG
-    dest: "{{ pgdg_key_path }}"
+    dest: "{{ pgdg_yum_key_path }}"
     owner: root
     group: root
     mode: '0644'
@@ -11,7 +11,7 @@
     - import pgdg key
   when: ansible_distribution == 'CentOS'
 
-- name: Install PGDG Repository File on CentOS
+- name: pgdg yum repo
   template:
     src: pgdg-centos.repo.j2
     dest: "/etc/yum.repos.d/pgdg-{{ postgres_short_version }}-centos.repo"
@@ -19,3 +19,21 @@
     group: root
     mode: '0644'
   when: ansible_distribution == 'CentOS'
+
+- name: pgdg apt key
+  copy:
+    src: pgdg.gpg
+    dest: "{{ pgdg_apt_key_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: pgdg apt source list
+  template:
+    src: pgdg.list.j2
+    dest: "/etc/apt/sources.list.d/pgdg.list"
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_distribution == 'Ubuntu'
