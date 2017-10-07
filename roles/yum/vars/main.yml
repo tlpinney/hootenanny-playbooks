@@ -1,0 +1,4 @@
+---
+# Enhance usage of yum with any packages/plugins.
+yum_packages:
+ - yum-plugin-versionlock

@@ -1,0 +1,7 @@
+---
+- name: install yum packages
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ yum_packages }}"
+  when: ansible_distribution == 'CentOS'
