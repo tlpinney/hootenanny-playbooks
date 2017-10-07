@@ -1,8 +1,13 @@
 ---
-
-- name: Include the correct variables for the platform.
+- name: include hootenanny variables
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
     - "{{ ansible_distribution }}.yml"
 
+
+- name: install hootenanny packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ hoot_packages }}"

@@ -1,5 +1,4 @@
 ---
-
 - name: configure package repositories
   hosts: all
   become: true
@@ -7,3 +6,9 @@
     - epel
     - nodesource
     - pgdg
+
+- name: install hootenanny packages
+  hosts: all
+  become: true
+  roles:
+    - hoot
