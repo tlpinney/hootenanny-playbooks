@@ -1,6 +1,4 @@
 ---
-nodejs_version: '0.10'
-
 nodesource_apt_base_url: "https://deb.nodesource.com/{{ nodejs_version | nodesource_apt_repo }}"
 nodesource_apt_key: nodesource.gpg
 nodesource_apt_key_path: "/etc/apt/trusted.gpg.d/{{ nodesource_apt_key }}"
@@ -10,6 +8,3 @@ nodesource_yum_base_url: "https://rpm.nodesource.com/{{ nodejs_version | nodesou
 nodesource_yum_key: NODESOURCE-GPG-SIGNING-KEY-EL
 nodesource_yum_key_path: "/etc/pki/rpm-gpg/{{ nodesource_yum_key }}"
 nodesource_yum_repo_path: "/etc/yum.repos.d/nodesource-el.repo"
-
-
-

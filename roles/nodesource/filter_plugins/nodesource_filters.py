@@ -6,10 +6,11 @@ class FilterModule(object):
         }
 
     def nodesource_version(self, nodejs_version):
+        major, minor = nodejs_version.split('.')[:2]
         if nodejs_version.startswith('0'):
-            return nodejs_version
+            return '.'.join([major, minor])
         else:
-            return '%s.x' % nodejs_version.split('.')[0]
+            return '%s.x' % major
     
     def nodesource_apt_repo(self, nodejs_version):
         return 'node_%s' % self.nodesource_version(nodejs_version) 
