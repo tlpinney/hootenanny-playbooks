@@ -1,37 +1,25 @@
 ---
-- name: nodejs apt package
-  package:
-    name: "{{ nodejs_apt_package }}"
-    state: "{{ nodejs_package_state }}"
-  when: ansible_distribution == 'Ubuntu'
+- name: include nodejs variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
 
-- name: nodejs yum package
-  package:
-    name: "{{ nodejs_yum_package }}"
-    state: "{{ nodejs_package_state }}"
-  when: ansible_distribution == 'CentOS'
+- name: setup nodesource repo
+  include_tasks: "{{ ansible_distribution }}.yml"
 
-- name: nodejs development yum package
+- name: nodejs package
   package:
-    name: "{{ nodejs_yum_devel_package }}"
+    name: "{{ nodejs_package }}"
+    state: "{{ nodejs_package_state }}"
+
+- name: nodejs development package
+  package:
+    name: "{{ nodejs_devel_package }}"
     state: "{{ nodejs_devel_package_state }}"
+  when: nodejs_devel_package is defined
+
+- name: nodejs version lock
+  include_tasks: yum_versionlock.yml
   when: ansible_distribution == 'CentOS'
-
-- name: nodejs yum versionlock list
-  command: yum versionlock list
-  register: nodejs_yum_versionlock
-  when: ansible_distribution == 'CentOS'
-
-- name: nodejs package yum versionlock
-  command: "yum versionlock {{ nodejs_yum_package }}"
-  when:
-    - ansible_distribution == 'CentOS'
-    - nodejs_package_state == 'present'
-    - nodejs_yum_versionlock.stdout.find(nodejs_yum_package) == -1
-
-- name: nodejs development package yum versionlock
-  command: "yum versionlock {{ nodejs_yum_devel_package }}"
-  when:
-    - ansible_distribution == 'CentOS'
-    - nodejs_package_state == 'present'
-    - nodejs_yum_versionlock.stdout.find(nodejs_yum_devel_package) == -1

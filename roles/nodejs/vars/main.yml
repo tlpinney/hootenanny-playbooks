@@ -1,9 +1,3 @@
 ---
-# The `nodejs_version` variable's default is actually set in the `nodesource`
-# role (as it's necessary even to set up the correct package repository).
 nodejs_package_state: present
 nodejs_devel_package_state: present
-
-nodejs_apt_package: "nodejs={{ nodejs_version }}-1nodesource1~{{ ansible_distribution_release }}1"
-nodejs_yum_package: "nodejs-{{ nodejs_version }}"
-nodejs_yum_devel_package: "nodejs-devel-{{ nodejs_version }}"

@@ -1,13 +1,5 @@
 ---
-- name: configure package repositories
-  hosts: all
-  become: true
-  roles:
-    - epel
-    - nodesource
-    - pgdg
-
-- name: install hootenanny packages
+- name: configure for hootenanny
   hosts: all
   become: true
   roles:
