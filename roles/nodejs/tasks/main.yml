@@ -1,13 +1,21 @@
 ---
-- name: nodejs package
+- name: nodejs apt package
   package:
-    name: "{{ nodejs_package }}"
+    name: "{{ nodejs_apt_package }}"
     state: "{{ nodejs_package_state }}"
+  when: ansible_distribution == 'Ubuntu'
 
-- name: nodejs development package
+- name: nodejs yum package
   package:
-    name: "{{ nodejs_devel_package }}"
+    name: "{{ nodejs_yum_package }}"
+    state: "{{ nodejs_package_state }}"
+  when: ansible_distribution == 'CentOS'
+
+- name: nodejs development yum package
+  package:
+    name: "{{ nodejs_yum_devel_package }}"
     state: "{{ nodejs_devel_package_state }}"
+  when: ansible_distribution == 'CentOS'
 
 - name: nodejs yum versionlock list
   command: yum versionlock list
@@ -15,15 +23,15 @@
   when: ansible_distribution == 'CentOS'
 
 - name: nodejs package yum versionlock
-  command: "yum versionlock {{ nodejs_package }}"
+  command: "yum versionlock {{ nodejs_yum_package }}"
   when:
     - ansible_distribution == 'CentOS'
     - nodejs_package_state == 'present'
-    - nodejs_yum_versionlock.stdout.find(nodejs_package) == -1
+    - nodejs_yum_versionlock.stdout.find(nodejs_yum_package) == -1
 
 - name: nodejs development package yum versionlock
-  command: "yum versionlock {{ nodejs_devel_package }}"
+  command: "yum versionlock {{ nodejs_yum_devel_package }}"
   when:
     - ansible_distribution == 'CentOS'
     - nodejs_package_state == 'present'
-    - nodejs_yum_versionlock.stdout.find(nodejs_devel_package) == -1
+    - nodejs_yum_versionlock.stdout.find(nodejs_yum_devel_package) == -1

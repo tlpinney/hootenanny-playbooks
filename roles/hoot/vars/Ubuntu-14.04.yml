@@ -39,9 +39,6 @@ hoot_packages:
   - libxerces-c28
   - maven
   - mlocate
-  - nodejs-dev
-  - nodejs-legacy
-  - npm
   - openssh-server
   - patch
   - postgresql-9.5

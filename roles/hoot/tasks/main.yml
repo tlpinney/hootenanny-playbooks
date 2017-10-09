@@ -5,7 +5,6 @@
     - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
 
-
 - name: install hootenanny packages
   package:
     name: "{{ item }}"
