@@ -2,5 +2,5 @@
 - name: install epel package
   package:
     name: "{{ epel_package }}"
-    state: installed
+    state: "{{ epel_state }}"
   when: ansible_distribution == 'CentOS'
