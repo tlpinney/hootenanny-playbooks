@@ -16,4 +16,3 @@ oracle_jdk8_versions:
 oracle_jdk8_release: "8u{{ oracle_jdk8_update }}-b{{ oracle_jdk8_versions[oracle_jdk8_update].build }}"
 oracle_jdk8_base_url: "{{ oracle_jdk_base_url }}/{{ oracle_jdk8_release }}/{{ oracle_jdk8_versions[oracle_jdk8_update].hash }}"
 oracle_jdk8_base_file: "jdk-8u{{ oracle_jdk8_update }}-linux-x64"
-

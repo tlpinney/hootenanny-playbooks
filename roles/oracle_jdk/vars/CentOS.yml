@@ -1,3 +1,6 @@
 ---
-oracle_download_group: nobody
 oracle_jdk8_download_url: "{{ oracle_jdk8_base_url }}/{{ oracle_jdk8_base_file }}.rpm"
+
+oracle_jdk8_checksums:
+  131: '3d1e8cc66f4fd77acef6093329d5dd95bd06e4a03926c52df794f311a0c093f8'
+  144: 'cdb016da0c509d7414ee3f0c15b2dae5092d9a77edf7915be4386d5127e8092f'
