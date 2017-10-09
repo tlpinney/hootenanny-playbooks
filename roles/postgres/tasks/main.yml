@@ -13,3 +13,9 @@
     name: "{{ item }}"
     state: "{{ postgres_state }}"
   with_items: "{{ postgres_packages }}"
+
+- name: install postgis packages
+  package:
+    name: "{{ item }}"
+    state: "{{ postgis_state }}"
+  with_items: "{{ postgis_packages }}"
