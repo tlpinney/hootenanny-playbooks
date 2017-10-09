@@ -1,0 +1,22 @@
+---
+postgres_state: present
+postgres_version: '9.5.3'
+
+postgis_version: '2.3'
+postgis_state: present
+
+postgres_dotless_version: "{{ postgres_version | pg_dotless_version }}"
+postgres_short_version: "{{ postgres_version | pg_short_version }}"
+postgis_dotless_version: "{{ postgis_version | pg_dotless_version }}"
+postgis_short_version: "{{ postgis_version | pg_short_version }}"
+
+pgdg_base_url: 'https://download.postgresql.org'
+
+pgdg_apt_base_url: "{{ pgdg_base_url }}/pub/repos/apt"
+pgdg_apt_key: pgdg.gpg
+pgdg_apt_key_path: "/etc/apt/trusted.gpg.d/{{ pgdg_apt_key }}"
+
+pgdg_yum_base_url: "{{ pgdg_base_url }}/pub/repos/yum"
+pgdg_yum_key: "RPM-GPG-KEY-PGDG-{{ postgres_dotless_version }}"
+pgdg_yum_key_path: "/etc/pki/rpm-gpg/{{ pgdg_yum_key }}"
+pgdg_yum_repo_path: "/etc/yum.repos.d/pgdg-{{ postgres_dotless_version }}-centos.repo"

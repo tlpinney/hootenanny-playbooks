@@ -1,0 +1,9 @@
+---
+postgres_packages:
+  - "postgresql{{ postgres_dotless_version }}"
+  - "postgresql{{ postgres_dotless_version }}-contrib"
+  - "postgresql{{ postgres_dotless_version }}-server"
+  - "postgresql{{ postgres_dotless_version }}-devel"
+
+postgis_packages:
+  - "postgis{{ postgis_dotless_version }}_{{ postgres_dotless_version }}"

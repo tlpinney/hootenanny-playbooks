@@ -1,0 +1,8 @@
+---
+postgres_packages:
+  - "postgresql-{{ postgres_short_version }}"
+  - "postgresql-client-{{ postgres_short_version }}"
+
+postgis_packages:
+  - "postgresql-{{ postgres_short_version }}-postgis-{{ postgis_short_version }}"
+  - "postgresql-{{ postgres_short_version }}-postgis-scripts"

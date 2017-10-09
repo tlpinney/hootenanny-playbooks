@@ -1,0 +1,16 @@
+---
+- name: pgdg apt key
+  copy:
+    src: "{{ pgdg_apt_key }}"
+    dest: "{{ pgdg_apt_key_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: pgdg apt source list
+  apt_repository:
+    state: present
+    repo: "deb {{ pgdg_apt_base_url }} {{ ansible_distribution_release }}-pgdg main"
+    filename: pgdg
+    mode: '0644'
+    update_cache: yes
