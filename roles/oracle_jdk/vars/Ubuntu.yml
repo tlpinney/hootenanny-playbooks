@@ -1,0 +1,3 @@
+---
+oracle_download_group: nogroup
+oracle_jdk8_download_url: "{{ oracle_jdk8_base_url }}/{{ oracle_jdk8_base_file }}.tar.gz"

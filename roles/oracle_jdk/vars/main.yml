@@ -1,0 +1,19 @@
+---
+oracle_cache_dir: /var/cache/oracle
+oracle_jdk_base_url: 'http://download.oracle.com/otn-pub/java/jdk'
+
+# Oracle JDK releases have an internal build number and use an arbitrary hash
+# to prevent automatic URL discovery for new releases.
+oracle_jdk8_update: 144
+oracle_jdk8_versions:
+  131:
+    build: '11'
+    hash: 'd54c1d3a095b4ff2b6607d096fa80163'
+  144:
+    build: '01'
+    hash: '090f390dda5b47b9b721c7dfaa008135'
+
+oracle_jdk8_release: "8u{{ oracle_jdk8_update }}-b{{ oracle_jdk8_versions[oracle_jdk8_update].build }}"
+oracle_jdk8_base_url: "{{ oracle_jdk_base_url }}/{{ oracle_jdk8_release }}/{{ oracle_jdk8_versions[oracle_jdk8_update].hash }}"
+oracle_jdk8_base_file: "jdk-8u{{ oracle_jdk8_update }}-linux-x64"
+

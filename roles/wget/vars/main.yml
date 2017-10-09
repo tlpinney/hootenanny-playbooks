@@ -1,0 +1,3 @@
+---
+wget_package: wget
+wget_state: present

@@ -1,0 +1,17 @@
+---
+- name: include oracle jdk vars
+  include_vars: "{{ ansible_distribution }}.yml"
+
+- name: oracle jdk cache directory
+  file:
+    path: "{{ oracle_cache_dir }}"
+    state: directory
+    owner: root
+    group: "{{ oracle_download_group }}"
+    mode: '0775'
+
+- name: download oracle jdk
+  command: "sudo -u nobody -g {{ oracle_download_group }} wget --quiet --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{ oracle_jdk8_download_url }}"
+  args:
+    chdir: "{{ oracle_cache_dir }}"
+    creates: "{{ oracle_cache_dir }}/{{ oracle_jdk8_download_url | basename }}"
