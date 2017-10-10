@@ -1,0 +1,5 @@
+---
+- name: install oracle jdk
+  yum:
+    name: "{{ oracle_cache_dir }}/{{ oracle_jdk8_download_url | basename }}"
+    state: present

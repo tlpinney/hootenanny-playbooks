@@ -1,0 +1,18 @@
+---
+- file:
+    path: /usr/lib/jvm
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- file:
+    path: /usr/lib/jvm/oracle_jdk8
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- command: "tar --strip-components 1 -C /usr/lib/jvm/oracle_jdk8 -xzf {{ oracle_cache_dir }}/{{ oracle_jdk8_download_url | basename }}"
+  args:
+    creates: /usr/lib/jvm/oracle_jdk8/bin/javac

@@ -16,3 +16,6 @@
     dest: "{{ oracle_cache_dir }}/{{ oracle_jdk8_download_url | basename }}"
     checksum: "sha256:{{ oracle_jdk8_checksums[oracle_jdk8_update] }}"
     headers: 'Cookie: oraclelicense=accept-securebackup-cookie'
+
+- name: include oracle jdk package tasks
+  include_tasks: "{{ ansible_distribution }}.yml"
