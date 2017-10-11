@@ -1,18 +1,43 @@
 ---
 oracle_cache_dir: /var/cache/oracle
-oracle_jdk_base_url: 'http://download.oracle.com/otn-pub/java/jdk'
+oracle_jdk_state: present
 
-# Oracle JDK releases have an internal build number and use an arbitrary hash
-# to prevent automatic URL discovery for new releases.
-oracle_jdk8_update: 144
-oracle_jdk8_versions:
-  131:
-    build: '11'
-    hash: 'd54c1d3a095b4ff2b6607d096fa80163'
-  144:
-    build: '01'
-    hash: '090f390dda5b47b9b721c7dfaa008135'
+# Dictionary for information about the various Oracle JDK releases.
+#
+# * JDK Release version
+#   * JDK Release version update
+#     * Build
+#     * CDN Hash (to prevent automatic downloads)
+#     * SHA256 checksums, keyed by package type.
+oracle_jdk_data:
+  8:
+    131:
+      build: '11'
+      hash: 'd54c1d3a095b4ff2b6607d096fa80163'
+      checksums:
+        rpm: '3d1e8cc66f4fd77acef6093329d5dd95bd06e4a03926c52df794f311a0c093f8'
+        tar.gz: '62b215bdfb48bace523723cdbb2157c665e6a25429c73828a32f00e587301236'
+    144:
+      build: '01'
+      hash: '090f390dda5b47b9b721c7dfaa008135'
+      checksums:
+        rpm: 'cdb016da0c509d7414ee3f0c15b2dae5092d9a77edf7915be4386d5127e8092f'
+        tar.gz: 'e8a341ce566f32c3d06f6d0f0eeea9a0f434f538d22af949ae58bc86f2eeaae4'
 
-oracle_jdk8_release: "8u{{ oracle_jdk8_update }}-b{{ oracle_jdk8_versions[oracle_jdk8_update].build }}"
-oracle_jdk8_base_url: "{{ oracle_jdk_base_url }}/{{ oracle_jdk8_release }}/{{ oracle_jdk8_versions[oracle_jdk8_update].hash }}"
-oracle_jdk8_base_file: "jdk-8u{{ oracle_jdk8_update }}-linux-x64"
+# Default to jdk8u144
+oracle_jdk_version: 8
+oracle_jdk_update: 144
+
+# All of these variables are necessary to construct a download URL, as Oracle uses the folllowing:
+#  * The JDK release major version, update version, and the build version.
+#  * An arbitrary hash to prevent automatic URL usage on new releases.
+#  * The package type (currently rpm and tar.gz are supported).
+oracle_jdk_release: "{{ oracle_jdk_version }}u{{ oracle_jdk_update }}-b{{ oracle_jdk_data[oracle_jdk_version][oracle_jdk_update].build }}"
+oracle_jdk_base_url: "http://download.oracle.com/otn-pub/java/jdk/{{ oracle_jdk_release }}/{{ oracle_jdk_data[oracle_jdk_version][oracle_jdk_update].hash }}"
+oracle_jdk_basename: "jdk-{{ oracle_jdk_version }}u{{ oracle_jdk_update }}-linux-x64.{{ oracle_jdk_package_type }}"
+oracle_jdk_download_url: "{{ oracle_jdk_base_url }}/{{ oracle_jdk_basename }}"
+
+# Pull out the expected checksum for verification and construct the file destination
+# for the `get_url` module.
+oracle_jdk_checksum: "{{ oracle_jdk_data[oracle_jdk_version][oracle_jdk_update]['checksums'][oracle_jdk_package_type] }}"
+oracle_jdk_file: "{{ oracle_cache_dir }}/{{ oracle_jdk_basename }}"

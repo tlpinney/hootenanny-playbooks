@@ -12,9 +12,9 @@
 
 - name: download oracle jdk
   get_url:
-    url: "{{ oracle_jdk8_download_url }}"
-    dest: "{{ oracle_cache_dir }}/{{ oracle_jdk8_download_url | basename }}"
-    checksum: "sha256:{{ oracle_jdk8_checksums[oracle_jdk8_update] }}"
+    url: "{{ oracle_jdk_download_url }}"
+    dest: "{{ oracle_jdk_file }}"
+    checksum: "sha256:{{ oracle_jdk_checksum }}"
     headers: 'Cookie: oraclelicense=accept-securebackup-cookie'
 
 - name: include oracle jdk package tasks

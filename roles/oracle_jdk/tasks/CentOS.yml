@@ -1,5 +1,5 @@
 ---
-- name: install oracle jdk
+- name: install oracle jdk rpm
   yum:
-    name: "{{ oracle_cache_dir }}/{{ oracle_jdk8_download_url | basename }}"
-    state: present
+    name: "{{ oracle_jdk_file }}"
+    state: "{{ oracle_jdk_state }}"
