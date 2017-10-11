@@ -15,6 +15,11 @@ Vagrant.configure('2') do |config|
     ansible.playbook = 'hootenanny.yml'
   end
 
+  # Configure the default provider: VirtualBox
+  config.vm.provider :virtualbox do |vb|
+  end
+
+  # Configure AWS provider.
   config.vm.provider :aws do |aws|
     aws.instance_type = ENV.fetch('AWS_INSTANCE_TYPE', 'm3.xlarge')
     aws.block_device_mapping = [
