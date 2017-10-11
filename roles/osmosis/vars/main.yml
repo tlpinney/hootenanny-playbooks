@@ -1,0 +1,8 @@
+---
+osmosis_base_url: 'http://bretth.dev.openstreetmap.org/osmosis-build'
+osmosis_basename: 'osmosis-latest.tgz'
+osmosis_download_url: "{{ osmosis_base_url }}/{{ osmosis_basename }}"
+
+osmosis_file: "{{ osmosis_root }}/{{ osmosis_basename }}"
+osmosis_bin: "{{ osmosis_root }}/bin/osmosis"
+osmosis_src_dir: "{{ osmosis_root }}/bin/osmosis_src"

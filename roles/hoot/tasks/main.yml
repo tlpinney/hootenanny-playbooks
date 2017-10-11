@@ -5,6 +5,14 @@
     - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
 
+- name: install osmosis
+  include_role:
+    name: osmosis
+  vars:
+    osmosis_root: "{{ hoot_user_home }}"
+    osmosis_user: "{{ hoot_user }}"
+    osmosis_group: "{{ hoot_group }}"
+
 - name: install hootenanny packages
   package:
     name: "{{ item }}"
