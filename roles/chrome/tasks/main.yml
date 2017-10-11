@@ -1,0 +1,8 @@
+---
+- name: setup chrome repo
+  include_tasks: "{{ ansible_distribution }}.yml"
+
+- name: install chrome package
+  package:
+    name: "{{ chrome_package }}"
+    state: "{{ chrome_state }}"

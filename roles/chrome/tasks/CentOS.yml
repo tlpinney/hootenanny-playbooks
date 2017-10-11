@@ -1,0 +1,19 @@
+---
+- name: chrome yum key
+  copy:
+    src: "{{ chrome_yum_key | basename }}"
+    dest: "{{ chrome_yum_key }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: chrome yum repo
+  yum_repository:
+    state: present
+    name: google-chrome
+    baseurl: "{{ chrome_yum_url }}/$basearch"
+    description: "Google Chrome"
+    enabled: yes
+    file: "{{ chrome_yum_repo }}"
+    gpgcheck: yes
+    gpgkey: "file://{{ chrome_yum_key }}"
