@@ -21,6 +21,7 @@ hoot_packages:
   - glpk
   - glpk-devel
   - gnuplot
+  - htop
   - libicu-devel
   - libpng-devel
   - libtool
@@ -48,7 +49,9 @@ hoot_packages:
   - qtwebkit
   - qtwebkit-devel
   - swig
-  - 'tex*'
+  - tex-fonts-hebrew
+  - texlive
+  - texlive-collection-fontsrecommended
   - unzip
   - v8-devel
   - vim
