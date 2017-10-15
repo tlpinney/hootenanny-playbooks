@@ -4,8 +4,7 @@ chrome_state: present
 chrome_base_url: 'http://dl.google.com/linux/chrome'
 
 chrome_apt_url: "{{ chrome_base_url }}/deb/"
-chrome_apt_key: google-chrome.gpg
-chrome_apt_key_path: "/etc/apt/trusted.gpg.d/{{ chrome_apt_key }}"
+chrome_apt_key: "/etc/apt/trusted.gpg.d/google-chrome.gpg"
 
 chrome_yum_url: "{{ chrome_base_url }}/rpm/stable/"
 chrome_yum_key: "/etc/pki/rpm-gpg/RPM-GPG-KEY-Google-Chrome"

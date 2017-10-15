@@ -1,8 +1,8 @@
 ---
 - name: chrome apt key
   copy:
-    src: "{{ chrome_apt_key }}"
-    dest: "{{ chrome_apt_key_path }}"
+    src: "{{ chrome_apt_key | basename }}"
+    dest: "{{ chrome_apt_key }}"
     owner: root
     group: root
     mode: '0644'
