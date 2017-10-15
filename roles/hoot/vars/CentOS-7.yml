@@ -48,6 +48,7 @@ hoot_packages:
   - qt-postgresql
   - qtwebkit
   - qtwebkit-devel
+  - redhat-lsb-core
   - swig
   - tex-fonts-hebrew
   - texlive
