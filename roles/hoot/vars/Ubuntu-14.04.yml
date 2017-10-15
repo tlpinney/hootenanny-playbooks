@@ -5,7 +5,9 @@ hoot_packages:
   - bc
   - ccache
   - curl
+  - dblatex
   - distcc
+  - docbook-xml
   - dos2unix
   - doxygen
   - g++
@@ -32,6 +34,7 @@ hoot_packages:
   - libpango-1.0-0
   - libproj-dev
   - libprotobuf-dev
+  - libqtwebkit-dev
   - libqt4-dev
   - libqt4-sql-psql
   - libqt4-sql-sqlite
