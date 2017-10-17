@@ -52,6 +52,7 @@ hoot_packages:
   - swig
   - tex-fonts-hebrew
   - texlive
+  - texlive-collection-langcyrillic
   - texlive-collection-fontsrecommended
   - unzip
   - v8-devel

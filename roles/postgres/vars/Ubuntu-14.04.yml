@@ -6,4 +6,4 @@ postgres_packages:
 
 postgis_packages:
   - "postgresql-{{ postgres_short_version }}-postgis-{{ postgis_short_version }}"
-  - "postgresql-{{ postgres_short_version }}-postgis-scripts"
+  - "postgresql-{{ postgres_short_version }}-postgis-{{ postgis_short_version }}-scripts"
