@@ -5,17 +5,5 @@
     - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
 
-- name: setup pgdg repo
+- name: install pgdg repo and packages
   include_tasks: "{{ ansible_distribution }}.yml"
-
-- name: install postgres packages
-  package:
-    name: "{{ item }}"
-    state: "{{ postgres_state }}"
-  with_items: "{{ postgres_packages }}"
-
-- name: install postgis packages
-  package:
-    name: "{{ item }}"
-    state: "{{ postgis_state }}"
-  with_items: "{{ postgis_packages }}"

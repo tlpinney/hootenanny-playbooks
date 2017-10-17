@@ -14,3 +14,15 @@
     filename: pgdg
     mode: '0644'
     update_cache: yes
+
+- name: install postgres packages
+  apt:
+    name: "{{ item }}"
+    state: "{{ postgres_state }}"
+  with_items: "{{ postgres_packages }}"
+
+- name: install postgis packages
+  apt:
+    name: "{{ item }}"
+    state: "{{ postgis_state }}"
+  with_items: "{{ postgis_packages }}"

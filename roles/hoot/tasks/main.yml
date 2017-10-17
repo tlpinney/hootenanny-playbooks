@@ -14,7 +14,4 @@
     osmosis_group: "{{ hoot_group }}"
 
 - name: install hootenanny packages
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ hoot_packages }}"
+  include_tasks: "{{ ansible_distribution }}.yml"

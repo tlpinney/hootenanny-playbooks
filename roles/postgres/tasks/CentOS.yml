@@ -28,3 +28,15 @@
     file: "{{ pgdg_yum_repo_path }}"
     gpgcheck: yes
     gpgkey: "file://{{ pgdg_yum_key_path }}"
+
+- name: install postgres packages
+  yum:
+    name: "{{ item }}"
+    state: "{{ postgres_state }}"
+  with_items: "{{ postgres_packages }}"
+
+- name: install postgis packages
+  yum:
+    name: "{{ item }}"
+    state: "{{ postgis_state }}"
+  with_items: "{{ postgis_packages }}"
