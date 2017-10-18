@@ -23,10 +23,18 @@ oracle_jdk_data:
       checksums:
         rpm: 'cdb016da0c509d7414ee3f0c15b2dae5092d9a77edf7915be4386d5127e8092f'
         tar.gz: 'e8a341ce566f32c3d06f6d0f0eeea9a0f434f538d22af949ae58bc86f2eeaae4'
-
-# Default to jdk8u144
-oracle_jdk_version: 8
-oracle_jdk_update: 144
+    151:
+      build: '12'
+      hash: 'e758a0de34e24606bca991d704f6dcbf'
+      checksums:
+        rpm: '2c1137859aecc0a6aef8960d11967797466e9b812f8c170a43a2597e97dc8a08'
+        tar.gz: 'c78200ce409367b296ec39be4427f020e2c585470c4eed01021feada576f027f'
+    152:
+      build: '16'
+      hash: 'aa0333dd3019491ca4f6ddbe78cdb6d0'
+      checksums:
+        rpm: 'b95c69b10e41d0f91e1ae6ef51086025535a43235858326a5a8fd9c5693ecc28'
+        tar.gz: '218b3b340c3f6d05d940b817d0270dfe0cfd657a636bad074dcabe0c111961bf'
 
 # All of these variables are necessary to construct a download URL, as Oracle uses the folllowing:
 #  * The JDK release major version, update version, and the build version.

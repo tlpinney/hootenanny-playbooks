@@ -1,0 +1,4 @@
+---
+# Default to jdk8
+oracle_jdk_version: 8
+oracle_jdk_update: 152
