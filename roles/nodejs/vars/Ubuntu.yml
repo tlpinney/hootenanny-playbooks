@@ -1,6 +1,4 @@
 ---
-nodejs_version: '0.10.48'
-
 nodejs_package: "nodejs={{ nodejs_version }}-1nodesource1~{{ ansible_distribution_release }}1"
 
 nodesource_apt_base_url: "https://deb.nodesource.com/{{ nodejs_version | nodesource_apt_repo }}"
