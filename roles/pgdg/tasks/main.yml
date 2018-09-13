@@ -1,0 +1,19 @@
+---
+- name: 'pgdg yum key'
+  copy:
+    src: RPM-GPG-KEY-PGDG
+    dest: "{{ pgdg_yum_key_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: 'pgdg yum repo'
+  yum_repository:
+    state: present
+    name: "pgdg{{ postgres_version }}"
+    baseurl: "{{ pgdg_yum_base_url }}/{{ postgres_version }}/redhat/rhel-$releasever-$basearch"
+    description: "PostgreSQL {{ postgres_version }} $release - $basearch"
+    enabled: yes
+    file: "{{ pgdg_yum_repo_path }}"
+    gpgcheck: yes
+    gpgkey: "file://{{ pgdg_yum_key_path }}"
