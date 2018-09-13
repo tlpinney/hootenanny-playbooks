@@ -1,0 +1,35 @@
+---
+- name: 'hootenanny gpg release key'
+  copy:
+    src: "{{ hoot_yum_key }}"
+    dest: "{{ hoot_yum_key_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: 'hootenanny dependencies yum repo'
+  yum_repository:
+    state: present
+    name: 'hoot-deps'
+    baseurl: "{{ hoot_yum_deps_release_url }}"
+    description: 'Hootenanny Dependencies'
+    enabled: yes
+    file: "{{ hoot_yum_repo_path }}"
+    gpgcheck: yes
+    gpgkey: "file://{{ pgdg_yum_key_path }}"
+
+- name: 'hootenanny release yum repo'
+  yum_repository:
+    state: present
+    name: 'hoot-release'
+    baseurl: "{{ hoot_yum_release_url }}"
+    description: 'Hootenanny Release'
+    enabled: yes
+    file: "{{ hoot_yum_repo_path }}"
+    gpgcheck: yes
+    gpgkey: "file://{{ pgdg_yum_key_path }}"
+
+#- name: 'install hootenanny yum packages'
+#  yum:
+#    name: "{{ hoot_packages }}"
+#    state: "{{ hoot_packages_state }}"

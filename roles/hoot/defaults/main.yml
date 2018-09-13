@@ -1,0 +1,13 @@
+---
+hoot_yum_base_url: 'https://s3.amazonaws.com/hoot-repo/el7'
+hoot_yum_repo_path: '/etc/yum.repos.d/hoot'
+hoot_yum_key: 'RPM-GPG-KEY-Hoot'
+hoot_yum_key_path: "/etc/pki/rpm-gpg/{{ hoot_yum_key }}"
+
+hoot_yum_deps_release_url: "{{ hoot_yum_base_url }}/deps/release"
+hoot_yum_develop_url: "{{ hoot_yum_base_url }}/develop"
+hoot_yum_release_url: "{{ hoot_yum_base_url }}/release"
+
+hoot_packages:
+  - hootenanny-core
+  - hootenanny-services-ui

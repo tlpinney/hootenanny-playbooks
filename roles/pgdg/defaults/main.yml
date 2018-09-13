@@ -1,10 +1,10 @@
 ---
 postgres_version: '9.5'
-postgres_dotless_version: "{{ postgres_version | regex_replace('\.') }}"
+postgres_dotless_version: "{{ postgres_version | regex_replace('\\.') }}"
 
 pgdg_base_url: 'https://download.postgresql.org'
 
 pgdg_yum_base_url: "{{ pgdg_base_url }}/pub/repos/yum"
 pgdg_yum_key: "RPM-GPG-KEY-PGDG-{{ postgres_dotless_version }}"
 pgdg_yum_key_path: "/etc/pki/rpm-gpg/{{ pgdg_yum_key }}"
-pgdg_yum_repo_path: "/etc/yum.repos.d/pgdg-{{ postgres_dotless_version }}-centos.repo"
+pgdg_yum_repo_path: "/etc/yum.repos.d/pgdg-{{ postgres_dotless_version }}-{{ ansible_distribution | lower }}"
