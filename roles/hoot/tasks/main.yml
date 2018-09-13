@@ -16,6 +16,7 @@
     enabled: yes
     file: "{{ hoot_yum_repo_path }}"
     gpgcheck: yes
+    repo_gpgcheck: yes
     gpgkey: "file://{{ hoot_yum_key_path }}"
 
 - name: 'hootenanny release yum repo'
@@ -27,6 +28,7 @@
     enabled: yes
     file: "{{ hoot_yum_repo_path }}"
     gpgcheck: yes
+    repo_gpgcheck: yes
     gpgkey: "file://{{ hoot_yum_key_path }}"
 
 #- name: 'install hootenanny yum packages'
