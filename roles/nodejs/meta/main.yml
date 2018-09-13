@@ -1,4 +1,0 @@
----
-dependencies:
-  - { role: epel, when: ansible_distribution == 'CentOS' }
-  - { role: yum, when: ansible_distribution == 'CentOS' }

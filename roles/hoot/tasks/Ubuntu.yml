@@ -1,6 +1,0 @@
----
-- name: install hootenanny apt packages
-  apt:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ hoot_packages }}"

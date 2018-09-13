@@ -1,6 +1,0 @@
----
-hoot_user: vagrant
-hoot_group: "{{ hoot_user }}"
-hoot_user_home: "/home/{{ hoot_user }}"
-
-hoot_home: "{{ hoot_user_home }}/hoot"

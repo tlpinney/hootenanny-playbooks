@@ -1,3 +1,0 @@
----
-oracle_jdk_package_type: tar.gz
-oracle_jdk_home: "/usr/lib/jvm/oracle_jdk{{ oracle_jdk_version }}"

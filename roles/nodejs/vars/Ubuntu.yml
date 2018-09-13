@@ -1,6 +1,0 @@
----
-nodejs_package: "nodejs={{ nodejs_version }}-1nodesource1~{{ ansible_distribution_release }}1"
-
-nodesource_apt_base_url: "https://deb.nodesource.com/{{ nodejs_version | nodesource_apt_repo }}"
-nodesource_apt_key: nodesource.gpg
-nodesource_apt_key_path: "/etc/apt/trusted.gpg.d/{{ nodesource_apt_key }}"

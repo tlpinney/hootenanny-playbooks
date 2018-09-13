@@ -1,6 +1,0 @@
----
-
-- name: install git
-  package:
-    name: "{{ item }}"
-  with_items: "{{ git_packages }}"

@@ -1,7 +1,0 @@
----
-- name: install mocha
-  npm:
-    name: "{{ mocha_package }}"
-    state: "{{ mocha_state }}"
-    global: yes
-    version: "{{ mocha_version }}"

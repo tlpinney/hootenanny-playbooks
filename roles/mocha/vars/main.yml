@@ -1,4 +1,0 @@
----
-mocha_package: mocha
-mocha_state: present
-mocha_version: 3.5.3

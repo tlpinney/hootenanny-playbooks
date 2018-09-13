@@ -1,5 +1,0 @@
----
-- name: install oracle jdk rpm
-  yum:
-    name: "{{ oracle_jdk_file }}"
-    state: "{{ oracle_jdk_state }}"

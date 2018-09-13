@@ -1,5 +1,0 @@
----
-- name: install wget package
-  package:
-    name: "{{ wget_package }}"
-    state: "{{ wget_state }}"

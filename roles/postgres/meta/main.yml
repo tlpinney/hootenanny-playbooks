@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: epel, when: ansible_distribution == 'CentOS' }

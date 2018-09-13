@@ -1,7 +1,0 @@
----
-dependencies:
-  - { role: oracle_jdk }
-  - { role: postgres }
-  - { role: nodejs }
-  - { role: mocha }
-  - { role: chrome }
