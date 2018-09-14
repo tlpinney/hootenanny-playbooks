@@ -12,6 +12,13 @@ RUN ansible-playbook hootenanny-docker.yml
 
 RUN yum install hootenanny-core -y
 
-CMD /usr/bin/hoot
+# Debugging tools 
+RUN yum install lsof tmux -y
+
+#CMD /usr/bin/hoot
+
+RUN yum install hootenanny-services-ui -y 
+
+ENTRYPOINT ["/usr/libexec/tomcat8/server", "start"]
 
 
